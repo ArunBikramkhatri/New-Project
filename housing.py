@@ -68,9 +68,6 @@ numerical_imputer = SimpleImputer(missing_values=np.nan,strategy='mean')
 categorical_imputer = SimpleImputer(missing_values=np.nan , strategy='most_frequent')
 
 
-categorical_nan = categorical_imputer.fit_transform(categorical_nan)
-numerical_nan = numerical_imputer.fit_transform(numerical_nan)
-
 
 
 
