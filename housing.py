@@ -63,13 +63,6 @@ for i in range(len(data.columns)):
         numerical_nan = pd.concat([numerical_nan,data.iloc[:,i]],axis=1)
 
 
-#Simple Imputer for categorical and numerical
-numerical_imputer = SimpleImputer(missing_values=np.nan,strategy='mean')
-categorical_imputer = SimpleImputer(missing_values=np.nan , strategy='most_frequent')
-
-
-
-
 
 
 
