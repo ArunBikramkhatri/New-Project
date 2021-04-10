@@ -15,7 +15,9 @@ Created on Mon Apr  5 16:56:47 2021
 import pandas as pd
 import numpy as np
 from sklearn.impute import SimpleImputer
-
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import LabelEncoder
 
 # Data with salary and ID
 file0 = pd.read_csv("F:/ML Datasets/sample_submission.csv")
@@ -63,17 +65,25 @@ for i in range(len(data.columns)):
         numerical_nan = pd.concat([numerical_nan,data.iloc[:,i]],axis=1)
 
 
+#Simple Imputer for categorical and numerical
+numerical_imputer = SimpleImputer(missing_values=np.nan,strategy='mean')
+categorical_imputer = SimpleImputer(missing_values=np.nan , strategy='most_frequent')
+
+#Replacing nan by most freuent for categorical data
+for i in range(len(categorical_nan.columns)):
+
+    categorical_nan.iloc[:,i] = categorical_imputer.fit_transform(categorical_nan.iloc[:,i].values.reshape(-1,1))
+
+#Replacing nan by mean for numerical data
+for j in range(len(numerical_nan.columns)):
+    numerical_nan.iloc[:,j] = numerical_imputer.fit_transform(numerical_nan.iloc[:,j].values.reshape(-1,1))
 
 
+#concating categprical and numerical data after removing nan values
+#full_data = pd.concat([ numerical_nan , categorical_nan],axis=1)
 
-
-
-
-
-
-
-
-
+#checking if there are values or not
+#a = full_data.isnull().sum()
 
 
 
